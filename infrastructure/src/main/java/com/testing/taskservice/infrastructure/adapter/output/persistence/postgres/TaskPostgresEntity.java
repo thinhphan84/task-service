@@ -1,4 +1,4 @@
-package com.testing.taskservice.infrastructure.adapter.output.persistence;
+package com.testing.taskservice.infrastructure.adapter.output.persistence.postgres;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 

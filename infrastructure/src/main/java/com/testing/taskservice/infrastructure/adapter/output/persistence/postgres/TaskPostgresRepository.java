@@ -1,4 +1,4 @@
-package com.testing.taskservice.infrastructure.adapter.output.persistence;
+package com.testing.taskservice.infrastructure.adapter.output.persistence.postgres;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,4 +1,4 @@
-package com.testing.taskservice.infrastructure.adapter.output.persistence;
+package com.testing.taskservice.infrastructure.adapter.output.persistence.postgres;
 
 import com.testing.taskservice.application.common.annotations.PersistenceAdapter;
 import com.testing.taskservice.application.port.output.GetAllTasksPort;

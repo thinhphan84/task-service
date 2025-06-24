@@ -1,4 +1,4 @@
-package com.testing.taskservice.infrastructure.adapter.output.persistence;
+package com.testing.taskservice.infrastructure.adapter.output.persistence.postgres;
 
 import com.testing.taskservice.domain.model.Task;
 import org.springframework.beans.BeanUtils;
