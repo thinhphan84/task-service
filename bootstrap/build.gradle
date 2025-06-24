@@ -20,6 +20,8 @@ dependencies {
     implementation project(':infrastructure')
     implementation project(':domain')
 
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 

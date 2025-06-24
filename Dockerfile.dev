@@ -1,16 +1,24 @@
-# FROM openjdk:21-slim
 FROM gradle:8.14.2-jdk21-alpine
 
 WORKDIR /app
 
-# Copy the Maven project files
-COPY build.gradle .
-COPY settings.gradle .
+# Pre-copy Gradle wrapper & config for faster boot
 COPY gradle gradle
+COPY settings.gradle .
+COPY build.gradle .
+
+# Copy module build.gradle for caching layer
 COPY bootstrap/build.gradle bootstrap/
 COPY application/build.gradle application/
 COPY domain/build.gradle domain/
 COPY infrastructure/build.gradle infrastructure/
 
-# Mount source code from the host (hot reload enabled)
+# Copy start script
+COPY start.sh start.sh
+RUN chmod +x start.sh
+
+# Full source for hot reload
 COPY . .
+
+# Default command
+CMD ["sh", "./start.sh"]
