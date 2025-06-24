@@ -11,6 +11,9 @@ spring:
       enabled: true
     restart:
       enabled: true
+      additional-paths:
+        - ../application/src/main/java
+        - ../infrastructure/src/main/java
   datasource:
     url: jdbc:postgresql://postgres:5432/task-service-db
     username: postgres
