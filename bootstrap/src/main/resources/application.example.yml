@@ -21,7 +21,7 @@ spring:
     show-sql: true
     database-platform: org.hibernate.dialect.PostgreSQLDialect # Hibernate dialect specific to PostgreSQL
   flyway:
-    locations: classpath:db/postgres/migration
+    locations: filesystem:.\infrastructure\src\main\resources\db\postgres\migration
     enabled: true
   docker:
     compose:
