@@ -1,0 +1,6 @@
+rootProject.name = 'task-service'
+
+include 'application'
+include 'domain'
+include 'infrastructure'
+include 'bootstrap'

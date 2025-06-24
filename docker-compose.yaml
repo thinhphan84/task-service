@@ -1,0 +1,42 @@
+services:
+  task-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: task-service
+    environment:
+      - JAVA_TOOL_OPTIONS=-Dspring-boot.run.jvmArguments="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
+    ports:
+      - "8080:8080"
+      - "5005:5005"
+    volumes:
+      - .:/app
+    command: gradle :bootstrap:bootRun
+    restart: always
+    depends_on:
+      - postgres
+    networks:
+      - task-service-db-net
+
+  postgres:
+    image: 'postgres:latest'
+    container_name: task-service-db
+    restart: always
+    environment:
+      POSTGRES_DB: task-service-db
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - task-service-db-net
+
+volumes:
+  # Named volume to persist PostgreSQL data
+  postgres_data:
+
+networks:
+  task-service-db-net:
+    driver: bridge

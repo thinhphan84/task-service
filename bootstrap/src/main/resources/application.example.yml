@@ -1,0 +1,28 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api/task-service
+
+spring:
+  application:
+    name: task-service
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+  datasource:
+    url: jdbc:postgresql://postgres:5432/task-service-db
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: none # Important: Flyway will auto handle this
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect # Hibernate dialect specific to PostgreSQL
+  flyway:
+    locations: classpath:db/postgres/migration
+    enabled: true
+  docker:
+    compose:
+      enabled: false
