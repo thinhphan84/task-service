@@ -1,5 +1,5 @@
 ##!/bin/sh
-#
+
 ## Watch for code changes and rebuild bootJar continuously (required for DevTools to trigger restarts)
 #gradle -t :bootstrap:bootJar &
 #
@@ -7,5 +7,5 @@
 ## The 'skipDownload' flag avoids re-downloading dependencies
 #gradle :bootstrap:bootRun -PskipDownload=true
 
-# Hot reload bằng cách chạy thẳng bootRun từ bootstrap
+# Hot reload by directly running bootRun from bootstrap
 exec gradle :bootstrap:bootRun --continuous
