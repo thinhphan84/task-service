@@ -15,7 +15,7 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-class TaskPostgresEntity {
+public class TaskPostgresEntity {
 
     @Id
     @Column(name = "id", nullable = false)

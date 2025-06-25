@@ -12,8 +12,8 @@ configurations {
 }
 
 dependencies {
-    compileOnly 'org.projectlombok:lombok:1.18.32'
-    annotationProcessor 'org.projectlombok:lombok:1.18.32'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
 
-    testImplementation 'com.tngtech.archunit:archunit-junit5:1.4.1'
+    testImplementation 'com.tngtech.archunit:archunit-junit5'
 }

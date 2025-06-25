@@ -3,13 +3,14 @@ package com.testing.taskservice.infrastructure.adapter.output.persistence.postgr
 import com.testing.taskservice.domain.enums.TaskPriority;
 import com.testing.taskservice.domain.enums.TaskStatus;
 import com.testing.taskservice.domain.model.Task;
+import com.testing.taskservice.domain.model.Task.TaskId;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
 @Component
 public class TaskPostgresMapper {
-    Task mapToDomainEntity(TaskPostgresEntity taskPostgresEntity) {
-        return Task.builder().id(new Task.TaskId(taskPostgresEntity.getId())).
+    Task mapToDomainModel(TaskPostgresEntity taskPostgresEntity) {
+        return Task.builder().id(new TaskId(taskPostgresEntity.getId())).
                 title(taskPostgresEntity.getTitle()).
                 description(taskPostgresEntity.getDescription()).
                 priority(TaskPriority.valueOf(taskPostgresEntity.getPriority())).

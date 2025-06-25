@@ -1,13 +1,13 @@
 package com.testing.taskservice.application.port.input;
 
 import com.testing.taskservice.application.dto.TaskDTO;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface GetAllTasksUseCase {
-    List<TaskDTO> getAllTasks(GetAllTasksUseCaseQuery query);
+    Page<TaskDTO> getAllByIsDeletedFalse(GetAllTasksUseCaseQuery query);
 
-    record GetAllTasksUseCaseQuery() {
+    record GetAllTasksUseCaseQuery(Pageable pageable) {
 
     }
 }
