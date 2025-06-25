@@ -18,9 +18,7 @@ public class TaskPostgresAdapter implements GetAllTasksPort {
 
     @Override
     public List<Task> getAllTasks() {
-        List<TaskPostgresEntity> entities = taskPostgresRepository.findAll();
-
-        return entities.stream()
+        return taskPostgresRepository.findAll().stream()
                 .map(taskPostgresMapper::mapToDomainEntity)
                 .collect(Collectors.toList());
     }

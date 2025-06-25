@@ -5,6 +5,7 @@ import com.testing.taskservice.application.common.annotations.UseCase;
 import com.testing.taskservice.application.dto.TaskDTO;
 import com.testing.taskservice.application.port.input.GetAllTasksUseCase;
 import com.testing.taskservice.application.port.output.GetAllTasksPort;
+import com.testing.taskservice.domain.model.Task;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
@@ -23,6 +24,7 @@ public class GetAllTasksService implements GetAllTasksUseCase {
                 .map(task -> {
                     TaskDTO taskDTO = new TaskDTO();
                     taskDTO.setId(task.getId().value());
+                    taskDTO.setTitle(task.getTitle());
                     taskDTO.setDescription(task.getDescription());
                     taskDTO.setPriority(task.getPriority().toString());
                     taskDTO.setStatus(task.getStatus().toString());
