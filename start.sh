@@ -1,11 +1,19 @@
-##!/bin/sh
+#!/bin/sh
 
-## Watch for code changes and rebuild bootJar continuously (required for DevTools to trigger restarts)
-#gradle -t :bootstrap:bootJar &
-#
-## Run the main application from the 'bootstrap' module
-## The 'skipDownload' flag avoids re-downloading dependencies
-#gradle :bootstrap:bootRun -PskipDownload=true
+trap "echo '🛑 Shutting down...'; kill 0" SIGINT SIGTERM
 
-# Hot reload by directly running bootRun from bootstrap
-exec gradle :bootstrap:bootRun --continuous
+# 1. Watch và compile tất cả modules
+echo "👀 Watching for code changes..."
+./gradlew -t \
+  :application:classes \
+  :infrastructure:classes \
+  :domain:classes \
+  :bootstrap:classes &
+
+WATCH_PID=$!
+
+# 2. Run app từ sourceSets (không cần jar)
+echo "🚀 Starting Spring Boot app..."
+./gradlew :bootstrap:bootRun -PskipDownload=true
+
+wait $WATCH_PID

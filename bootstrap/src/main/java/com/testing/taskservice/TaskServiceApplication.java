@@ -13,6 +13,7 @@ import org.springframework.context.annotation.ComponentScan;
 public class TaskServiceApplication {
 
     public static void main(String[] args) {
+        System.out.println("Hello World!");
         SpringApplication.run(TaskServiceApplication.class, args);
     }
 

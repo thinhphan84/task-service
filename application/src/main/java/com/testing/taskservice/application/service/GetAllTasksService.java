@@ -19,6 +19,7 @@ public class GetAllTasksService implements GetAllTasksUseCase {
 
     @Override
     public Page<TaskDTO> getAllByIsDeletedFalse(GetAllTasksUseCaseQuery query) {
+        System.out.println("ABCDEF");
         return getAllTasksPort.getAllByIsDeletedFalse(query.pageable())
                 .map(taskDTOMapper::mapToDTO);
     }

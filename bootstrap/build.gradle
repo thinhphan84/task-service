@@ -15,6 +15,23 @@ springBoot {
     mainClass = 'com.testing.taskservice.TaskServiceApplication'
 }
 
+bootRun {
+    sourceResources sourceSets.main
+
+    classpath = files(
+            file("${rootDir}/application/build/classes/java/main"),
+            file("${rootDir}/infrastructure/build/classes/java/main"),
+            file("${rootDir}/domain/build/classes/java/main"),
+            sourceSets.main.runtimeClasspath
+    )
+
+    dependsOn(
+            ":application:classes",
+            ":infrastructure:classes",
+            ":domain:classes"
+    )
+}
+
 dependencies {
     implementation project(':application')
     implementation project(':infrastructure')
