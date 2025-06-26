@@ -53,7 +53,14 @@
    ```bash
    ./gradlew :bootstrap:bootRun
    ```
+7. See env
+```bash
+   docker exec -it _task_-service env
+   ```
+
 
 ## Additional Resources
+
+
 
 - [Maven Repository](https://mvnrepository.com/) for dependency lookup.

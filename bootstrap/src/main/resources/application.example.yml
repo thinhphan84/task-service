@@ -15,9 +15,9 @@ spring:
         - ../application/src/main/java
         - ../infrastructure/src/main/java
   datasource:
-    url: jdbc:postgresql://postgres:5432/task-service-db
-    username: postgres
-    password: postgres
+    url: ${POSTGRES_DB_URL}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: none # Important: Flyway will auto handle this
