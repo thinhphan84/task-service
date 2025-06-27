@@ -1,14 +1,20 @@
 plugins {
-    id 'org.springframework.boot' version '3.5.3'
+    id('com.multiproject.common-conventions')
+    alias(libs.plugins.spring.boot)
+    alias(libs.plugins.spring.dependency.management)
+    alias(libs.plugins.versions)
 }
 
-group = 'com.testing'
-version = '0.0.1-SNAPSHOT'
+dependencies {
+    implementation project(':application')
+    implementation project(':domain')
+    implementation project(':infrastructure')
 
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
+    implementation(libs.spring.boot.starter.web)
+
+    developmentOnly(libs.spring.boot.devtools)
+
+    testImplementation(libs.spring.boot.test)
 }
 
 springBoot {
@@ -32,16 +38,18 @@ bootRun {
     )
 }
 
-dependencies {
-    implementation project(':application')
-    implementation project(':infrastructure')
-    implementation project(':domain')
+tasks.register("getDependencies", Copy) {
+    from(sourceSets.main.runtimeClasspath)
+    into("runtime/")
 
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    doFirst {
+        println "🧹 Cleaning runtime/"
+        delete "runtime"
+        file("runtime").mkdirs()
+    }
 
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-
-    implementation 'org.springframework.boot:spring-boot-starter-web'
+    doLast {
+        println "🗑️ Cleaning up runtime/ after copying"
+        delete "runtime"
+    }
 }
-

@@ -36,6 +36,7 @@ out/
 ### VS Code ###
 .vscode/
 
-**/application.yml
-
+### Others ###
 .env
+**/application.yml
+**/runtime

@@ -1,19 +1,7 @@
 plugins {
-    id 'java'
-}
-
-group = 'com.testing'
-version = '0.0.1-SNAPSHOT'
-
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
+    id('com.multiproject.common-conventions')
 }
 
 dependencies {
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-
-    testImplementation 'com.tngtech.archunit:archunit-junit5:1.4.1'
+    testImplementation(libs.archunit.junit5)
 }

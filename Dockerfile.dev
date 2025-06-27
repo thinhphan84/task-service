@@ -5,20 +5,20 @@ WORKDIR /app
 # Pre-copy Gradle wrapper & config for faster boot
 COPY gradle gradle
 COPY settings.gradle .
-COPY build.gradle .
 
 # Copy module build.gradle for caching layer
+COPY buildSrc/build.gradle buildSrc/
 COPY bootstrap/build.gradle bootstrap/
 COPY application/build.gradle application/
 COPY domain/build.gradle domain/
 COPY infrastructure/build.gradle infrastructure/
 
-# Copy start script
-COPY start.sh start.sh
-RUN chmod +x start.sh
-
 # Full source for hot reload
 COPY . .
+
+# Copy start script
+COPY start.sh start.sh
+RUN chmod +x start.sh && ./gradlew getDependencies
 
 # Default command
 CMD ["sh", "./start.sh"]

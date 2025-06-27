@@ -1,28 +1,16 @@
 plugins {
-    id 'java-library'
-}
-
-group = 'com.testing'
-version = '0.0.1-SNAPSHOT'
-
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
+    id 'com.multiproject.common-conventions'
+    alias(libs.plugins.spring.boot)
+    alias(libs.plugins.spring.dependency.management)
 }
 
 dependencies {
-    implementation ('org.springframework.boot:spring-boot-starter-web')
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-
     implementation project(':domain')
 
-    runtimeOnly 'org.postgresql:postgresql'
+    implementation libs.spring.boot.starter.web
+    implementation libs.spring.boot.starter.validation
+    implementation libs.spring.boot.starter.data.jpa
 
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'com.tngtech.archunit:archunit-junit5:1.4.1'
+    testImplementation libs.spring.boot.starter.test
+    testImplementation libs.archunit.junit5
 }
