@@ -1,6 +1,6 @@
 [versions]
 spring-boot = "3.5.3"
-spring-dependency-management = "1.1.0"
+spring-dependency-management = "1.1.7"
 postgresql = "42.7.7"
 lombok = "1.18.38"
 archunit-junit5 = "1.4.1"

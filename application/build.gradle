@@ -1,11 +1,15 @@
 plugins {
-    id 'com.multiproject.common-conventions'
+    id('com.multiproject.common-conventions')
     alias(libs.plugins.spring.boot)
     alias(libs.plugins.spring.dependency.management)
 }
 
+bootJar {
+    enabled = false
+}
+
 dependencies {
-    implementation project(':domain')
+    implementation project(":domain")
 
     implementation libs.spring.boot.starter.web
     implementation libs.spring.boot.starter.validation
