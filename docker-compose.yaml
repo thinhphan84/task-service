@@ -8,7 +8,6 @@ services:
         - POSTGRES_DB_URL=${POSTGRES_URL}/${POSTGRES_DB}
         - POSTGRES_USER=${POSTGRES_USER}
         - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-        - JAVA_TOOL_OPTIONS=-Dspring-boot.run.jvmArguments="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
     ports:
       - "8080:8080"
       - "5005:5005"

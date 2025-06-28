@@ -54,7 +54,7 @@
    ./gradlew :bootstrap:bootRun
    ```
 7. See env
-```bash
+   ```bash
    docker exec -it _task_-service env
    ```
 

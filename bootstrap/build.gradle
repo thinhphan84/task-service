@@ -22,7 +22,15 @@ springBoot {
 }
 
 bootRun {
+    jvmArgs('-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005')
+
     sourceResources sourceSets.main
+
+    dependsOn(
+            ":application:classes",
+            ":infrastructure:classes",
+            ":domain:classes"
+    )
 
     classpath = files(
             file("${rootDir}/application/build/classes/java/main"),
@@ -31,11 +39,6 @@ bootRun {
             sourceSets.main.runtimeClasspath
     )
 
-    dependsOn(
-            ":application:classes",
-            ":infrastructure:classes",
-            ":domain:classes"
-    )
 }
 
 tasks.register("getDependencies", Copy) {
