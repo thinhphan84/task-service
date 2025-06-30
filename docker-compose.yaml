@@ -8,12 +8,19 @@ services:
         - POSTGRES_DB_URL=${POSTGRES_URL}/${POSTGRES_DB}
         - POSTGRES_USER=${POSTGRES_USER}
         - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+        - SPRING_DEVTOOLS_RESTART_ENABLED=true
     ports:
       - "8080:8080"
       - "5005:5005"
+      - "35729:35729"
     volumes:
-      - .:/app
-    command: sh ./start.sh
+      # Chỉ map source code directories
+      - ./bootstrap/src:/app/bootstrap/src:cached
+      - ./application/src:/app/application/src:cached
+      - ./domain/src:/app/domain/src:cached
+      - ./infrastructure/src:/app/infrastructure/src:cached
+      # Cache gradle dependencies
+      - gradle-cache:/home/gradle/.gradle
     restart: always
     depends_on:
       - postgres
@@ -38,6 +45,7 @@ services:
 volumes:
   # Named volume to persist PostgreSQL data
   postgres_data:
+  gradle-cache:
 
 networks:
   task-service-db-net:

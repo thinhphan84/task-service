@@ -24,4 +24,11 @@ public class GetAllTasksController {
         GetAllTasksUseCaseQuery getAllTasksUseCaseQuery = new GetAllTasksUseCaseQuery(pageable);
         return new ResponseEntity<>(getAllTasksUseCase.getAllByIsDeletedFalse(getAllTasksUseCaseQuery), HttpStatus.OK);
     }
+
+    @GetMapping(path = "/tasks1")
+    String getAllTaskUseCase() {
+        return getAllTasksUseCase.getData();
+    }
+
+
 }

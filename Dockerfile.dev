@@ -2,23 +2,29 @@ FROM gradle:8.14.2-jdk21-alpine
 
 WORKDIR /app
 
-# Pre-copy Gradle wrapper & config for faster boot
+# Copy Gradle wrapper & settings
 COPY gradle gradle
+COPY gradlew .
 COPY settings.gradle .
 
-# Copy module build.gradle for caching layer
-COPY buildSrc/build.gradle buildSrc/
+# Copy ALL build.gradle files
+COPY build.gradle .
+COPY buildSrc/ buildSrc/
 COPY bootstrap/build.gradle bootstrap/
 COPY application/build.gradle application/
 COPY domain/build.gradle domain/
 COPY infrastructure/build.gradle infrastructure/
 
-# Full source for hot reload
-COPY . .
+# Copy source code vào image (sẽ được override bởi volume mount)
+COPY bootstrap/src bootstrap/src
+COPY application/src application/src
+COPY domain/src domain/src
+COPY infrastructure/src infrastructure/src
 
-# Copy start script
-COPY start.sh start.sh
-RUN chmod +x start.sh && ./gradlew getDependencies
+# Download dependencies
+RUN ./gradlew getDependencies --no-daemon
 
-# Default command
-CMD ["sh", "./start.sh"]
+EXPOSE 8080 5005 35729
+
+CMD ["./gradlew", ":bootstrap:bootRun", "--no-daemon", "--continuous", "-x", "test"]
+

@@ -23,4 +23,11 @@ public class GetAllTasksService implements GetAllTasksUseCase {
         return getAllTasksPort.getAllByIsDeletedFalse(query.pageable())
                 .map(taskDTOMapper::mapToDTO);
     }
+
+    @Override
+    public String getData() {
+        return "Get all tasks use case executed successfully 5552225";
+    }
+
+
 }

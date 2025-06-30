@@ -10,4 +10,8 @@ public interface GetAllTasksUseCase {
     record GetAllTasksUseCaseQuery(Pageable pageable) {
 
     }
+
+    String getData();
+
+
 }
